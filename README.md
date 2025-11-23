@@ -30,11 +30,11 @@ Please follow the below steps to run the project locally in your machine
    
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| *POST* | '/tasks' | Create a new Task |
-| *GET* | '/tasks/{id}' | Retrieves a single task by ID |
-| *PUT* | '/tasks/{id}' | Updates a single task by ID |
-| *DELETE* | '/tasks/{id}' | Deletes a single task by ID |
-| *GET* | '/tasks' | Retrieves all the tasks |
+| *POST* | /tasks | Create a new Task |
+| *GET* | /tasks/{id} | Retrieves a single task by ID |
+| *PUT* | /tasks/{id} | Updates a single task by ID |
+| *DELETE* | /tasks/{id} | Deletes a single task by ID |
+| *GET* | /tasks | Retrieves all the tasks |
 
    The parameters used in the task are:
    
