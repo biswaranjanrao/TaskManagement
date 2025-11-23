@@ -45,7 +45,12 @@ public class TaskControllerTest {
     //Initializing mock data to mockTask variable
     @BeforeEach
     void setUp() {
-    	mockTask = new Task("1","Title-1","Description - 1",TaskStatus.IN_PROGRESS,LocalDate.of(2025, 11, 23));    	 	
+    	mockTask = new Task();
+    	mockTask.setId("1");
+    	mockTask.setTitle("Title-1");
+    	mockTask.setDescription("Description - 1");
+    	mockTask.setStatus(TaskStatus.IN_PROGRESS);
+    	mockTask.setDue_date(LocalDate.of(2025, 11, 23));	
     }
     
     //JUnit test case for creating a task

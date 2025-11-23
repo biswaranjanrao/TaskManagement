@@ -17,25 +17,14 @@ public class TaskTest {
     private final String TEST_ID = TEST_UUID.toString(); 
 
     private Task createTestTask() {
-        return new Task(
-                TEST_ID,
-                "Test title",
-                "Test description",
-                TaskStatus.PENDING,
-                TODAY
-        );
-    }
-    
-    //JUnit test case for AllArgsConstructor by creating and verifying all fields of the task
-    @Test
-    void testAllArgsConstructorAndGetters() {
-        Task task = createTestTask();
+    	Task task = new Task();
+    	task.setId(TEST_ID);
+    	task.setTitle("Test title");
+    	task.setDescription("Test description");
+    	task.setStatus(TaskStatus.PENDING);
+    	task.setDue_date(TODAY);
+    	return task;
         
-        assertEquals(TEST_ID, task.getId());
-        assertEquals("Test title", task.getTitle());
-        assertEquals("Test description", task.getDescription());
-        assertEquals(TaskStatus.PENDING, task.getStatus());
-        assertEquals(TODAY, task.getDue_date());
     }
     
     //JUnit test case for NoArgsConstructor
@@ -62,21 +51,15 @@ public class TaskTest {
     //JUnit test case of equals and hashcode for compliance of entity with JPA
     @Test
     void testEqualsAndHashCode() {
-        Task task1 = createTestTask();
-        Task task2 = new Task(
-                TEST_ID,
-                "Test title",
-                "Test description",
-                TaskStatus.PENDING,
-                TODAY
-        );
-        Task task3 = new Task(
-                UUID.randomUUID().toString(),
-                "Test title -2",
-                "Test description -2",
-                TaskStatus.DONE,
-                TODAY.plusDays(5)
-        );
+    	Task task1 = createTestTask();        
+        Task task2 = createTestTask();        
+        Task task3 = new Task();
+        
+        task3.setId(UUID.randomUUID().toString());
+        task3.setTitle("Test title -2");
+        task3.setDescription("Test description -2");
+        task3.setStatus(TaskStatus.DONE);
+        task3.setDue_date(TODAY.plusDays(5));
         
         assertEquals(task1, task1);       
         assertEquals(task1, task2);

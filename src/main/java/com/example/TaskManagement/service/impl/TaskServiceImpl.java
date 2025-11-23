@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.TaskManagement.domain.Task;
+import com.example.TaskManagement.domain.TaskStatus;
 import com.example.TaskManagement.exception.TaskNotFoundHttpStatusException;
 import com.example.TaskManagement.repository.TaskRepository;
 import com.example.TaskManagement.service.TaskService;
@@ -49,6 +50,10 @@ public class TaskServiceImpl implements TaskService {
 		if(task.getTitle()==null || task.getDue_date()==null) {
 			throw new java.lang.IllegalArgumentException("Mandatory fields (Title,Due Date) are missing entries");
 		}
+		//Setting default values for Status
+		if(task.getStatus() == null) {
+			task.setStatus(TaskStatus.PENDING);
+		}
 		Task addTask = taskRepository.save(task);
 		return addTask;
 	}
@@ -72,7 +77,12 @@ public class TaskServiceImpl implements TaskService {
 		}
 		if(task.getDue_date()!= null)
 		{
-			existingTask.setDue_date(task.getDue_date());
+			
+			if(task.getDue_date().isBefore(LocalDate.now())){
+				throw new java.lang.IllegalArgumentException("Due date should be greater than current Date");
+			}else {
+				existingTask.setDue_date(task.getDue_date());
+			}
 		}
 		return taskRepository.save(existingTask);
 	}
